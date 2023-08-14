@@ -1,4 +1,4 @@
-baseURL = "https://vrod24.github.io/vrod24/"
+baseURL = "https://vrod24.github.io/vrod24official/"
 
 # Change the default theme to be use when building the site with Hugo
 theme = "LoveIt"
