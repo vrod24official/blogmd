@@ -244,7 +244,7 @@ FROM biketrips
 WHERE bike_user IS NOT NULL
 GROUP BY bike_user;
 ```
-![](/images/image1.png)
+![](/images/image1.png "In the present analysis, it is evident that Cyclistic currently exhibits a 44.64% (2,048,302) casual riders and 55.36% (2,539,802) member riders.")
 
 ### 4.2 Percentag of rides by Bike Type
 
@@ -262,55 +262,49 @@ ORDER BY rideable_type;
 ```
 ![](/images/image2.png)
 
-### 4.3 Total number of rides by Day
+### 4.3 General query
 
 ```SQL
-SELECT bike_user AS membership_type, day_of_week,
-COUNT (day_of_week) AS rides_per_day
-FROM biketrips
-WHERE bike_user is not null 
-GROUP BY bike_user, day_of_week
-ORDER BY 
-CASE day_of_week
-     WHEN 'Sunday' THEN 1 
-	 WHEN 'Monday' THEN 2
-	 WHEN 'Tuesday' THEN 3 
-	 WHEN 'Wednesday' THEN 4
-	 WHEN 'Thursday' THEN 5
-	 WHEN 'Friday' THEN 6
-	 WHEN 'Saturday' THEN 7 
-END, bike_user;
+select bike_user,
+count(ride_id) AS total_rides,
+round(sum(ride_length/3600),2) as total_ride_hours,
+round(avg(ride_length/60),2) as avg_ride_mins,
+round(max(ride_length/3600),2) as max_ride_hours,
+min(ride_length) as min_ride_user_sec
+From biketrips
+group by bike_user
 ```
 ![](/images/image3.png)
 
-### 4.4 Average ride duration by Day (seconds)
+
+### Monthly Metrics
 
 ```SQL
-SELECT bike_user AS membership_type, 
-day_of_week, 
-AVG (ride_length) as ride_duration
-FROM biketrips
-WHERE bike_user IS NOT NULL
-GROUP BY bike_user, day_of_week
-ORDER BY 
-CASE day_of_week
-     WHEN 'Sunday' THEN 1 
-	 WHEN 'Monday' THEN 2
-	 WHEN 'Tuesday' THEN 3 
-	 WHEN 'Wednesday' THEN 4
-	 WHEN 'Thursday' THEN 5
-	 WHEN 'Friday' THEN 6
-	 WHEN 'Saturday' THEN 7 
-END, bike_user;
+select 
+month,
+bike_user,
+count(ride_id) AS total_rides,
+round(sum(ride_length/3600),2) as total_ride_hours,
+round(avg(ride_length/60),2) as avg_ride_mins,
+round(max(ride_length/3600),2) as max_ride_hours,
+min(ride_length) as min_ride_user_sec
+
+from biketrips
+
+group by Month,bike_user
+order by total_rides
 ```
 ![](/images/image4.png)
 
-### Percentage of rides per Season
+### 4.5 Weekly Metrics
+
+
+
+### Monthly Metrics 
 
 ```SQL
 
 ```
-
 
 
 **Busiest day for rides**
