@@ -1,14 +1,14 @@
 ---
-title: "Maui Data Analytics Capstone Project"
+title: "Google Data Analytics Capstone Project"
 date: 2023-03-10T13:12:47+08:00
 draft: false
-author: "Maui"
+author: "Gerardo Humawan"
 tags: ["data analytics"]
 categories: ["data analytics"]
 
 lightgallery: true
 
-toc:
+toc: 
   #enable: true
   auto: false
 ---
@@ -16,7 +16,8 @@ toc:
 
 <!--more-->
 
-
+## Scenario
+You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations. 
 ## 1 Business task
 the quick brown fox jumps over the lazy dog
 ## 2 Data sources
