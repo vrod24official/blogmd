@@ -233,8 +233,9 @@ END;
 ## 4. Analyze
 In the Analyze phase, we delve into the data to uncover insights and address the key findings related to how annual members and casual riders use Cyclistic bikes differently. The focus is on understanding their behavior, preferences, and patterns to inform marketing strategies aimed at converting casual riders into annual members. To address the key findings, the following analyses were performed in postgreSQL server.
 
+### 4.1 Casual riders vs annual members (percentage)
+
 ```SQL
-  --- casual riders vs annual members (percentage)
 SELECT bike_user AS membership_type, 
 COUNT (bike_user) AS total_ride, 
 SUM (COUNT (bike_user)) OVER () AS total_membership,
@@ -242,8 +243,9 @@ CONCAT (CAST (COUNT (bike_user) * 100.0/ SUM (COUNT (bike_user)) OVER () AS DECI
 FROM biketrips
 WHERE bike_user IS NOT NULL
 GROUP BY bike_user;
-(/iamges/iamge2.png)
 ```
+![](/images/image1.png)
+
 
 
 ```SQL
