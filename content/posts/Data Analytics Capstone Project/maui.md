@@ -16,7 +16,7 @@ toc:
 
 <!--more-->
 
-## 1 Scenario
+## Scenario
 As a junior data analyst within Cyclistic's esteemed Marketing Analysis team, I am entrusted with a pivotal role in contributing to the organization's strategic vision. Cyclistic, a prominent bike-share enterprise located in Chicago, is poised to chart its course toward an even more prosperous future, and this trajectory hinges upon the optimization of its annual membership base. Given the significance of this endeavor, our team's foremost objective is to attain a nuanced comprehension of the divergent usage patterns exhibited by casual riders and annual members of Cyclistic's bike-sharing services.
 
 By delving into these discernible usage discrepancies, our team endeavors to forge a fresh and efficacious marketing strategy, aimed at the conversion of transient casual riders into dedicated annual members. The blueprint for this strategy is contingent upon securing the endorsement of Cyclistic's executive leadership. Consequently, the recommendations that will be presented must be underpinned by both compelling data insights and an array of sophisticated data visualizations.
@@ -29,7 +29,7 @@ Lily Moreno: The director of marketing and your manager. Moreno is responsible f
 Cyclistic marketing analytics team: A team of data analysts who are responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy. You joined this team six months ago and have been busy learning about Cyclistic’s mission and business goals — as well as how you, as a junior data analyst, can help Cyclistic achieve them.
 Cyclistic executive team: The notoriously detail-oriented executive team will decide whether to approve the recommended marketing program.  
 
-## 2 Ask
+## 1 Ask
 Three questions will guide the future marketing program: 
 1. How do annual members and casual riders use Cyclistic bikes differently? 
 2. Why would casual riders buy Cyclistic annual memberships? 
@@ -41,12 +41,12 @@ You will produce a report with the following deliverables:
 2. A description of all data sources used 
 3. Documentation of any cleaning or manipulation of data 4. A summary of your analysis 5. Supporting visualizations and key findings 6. Your top three recommendations based on your analysis 
 
-## 3 Prepare
+## 2 Prepare
 Utilizing Cyclistic's historical trip data, an in-depth analysis will be conducted to discern prevailing trends. The dataset encompassing the last twelve months of Cyclistic trip records can be accessed from the this link https://divvy-tripdata.s3.amazonaws.com/index.html. It is important to acknowledge that the datasets have been designated under an alternate nomenclature due to the fictitious nature of Cyclistic as a corporate entity. It is noteworthy, however, that these datasets remain suitable for the current case study, thus facilitating comprehensive responses to pertinent business inquiries. This dataset has been made available through the auspices of Motivate International Inc., and its use is authorized by the corresponding license agreement.
 
 It should be emphasized that the dataset is of a public nature, permitting the exploration of distinct usage patterns exhibited by various customer categories within the context of Cyclistic bicycles. However, it is crucial to recognize that data privacy considerations prohibit the utilization of personally identifiable information pertaining to riders. Consequently, any endeavors to correlate pass acquisitions with credit card details, with the intention of ascertaining the residence of casual riders within Cyclistic's service vicinity or their history of purchasing multiple individual passes, are precluded by these privacy constraints.
 
-### 3.1 Key tasks
+### 2.1 Key tasks
 Acquisition and Organization of Data:
 
 The acquisition of the requisite data has been executed diligently, with copies securely preserved both on my local computer and within the confines of Kaggle's secure environment. This meticulous approach to data storage ensures compliance with best practices in data security and confidentiality.
@@ -63,7 +63,7 @@ Credibility Assessment:
 
 An inherent aspect of the data analysis process involves an assessment of data credibility. This entails an evaluation of data sources, collection methodologies, and inherent biases. It is imperative to ensure that the data originates from reliable sources and adheres to rigorous collection standards. In order to gauge the credibility of the provided data, a comprehensive review of its sourcing and methodology will be undertaken, with the intent of validating its suitability for generating accurate and actionable insights. This critical appraisal will be a cornerstone in ensuring the integrity of the ensuing analysis and strategic recommendations.
 
-### 3.2 Merging of Datasets
+### 2.2 Merging of Datasets
 Through the utilization of a straightforward Python script, the data pertaining to the 12 consecutive months has been successfully amalgamated into a singular, unified dataset.
 
 ```python
@@ -96,7 +96,7 @@ combined_csv = pd.concat([pd.read_csv(f) for f in all_filenames ])
 combined_csv.to_csv( "2021combined_csv.csv", index=False, encoding='utf-8-sig')
 
 ```        
-### 3.3 View datasets
+### 2.3 View datasets
 Subsequent to the amalgamation of the 12 individual datasets, the aggregated dataset has been seamlessly imported into the PostgreSQL database infrastructure. This comprehensive dataset comprises a total of 5,595,063 distinct rows. For the purpose of reviewing the entire dataset, the ensuing SQL statement may be employed:
 
 ```SQL
@@ -120,8 +120,16 @@ CREATE TABLE biketrips
 Select Count(*) from biketrips;
 
 ```
-
-### 3.4 Data cleaning process
+## 3 Process
+Cleaning and preparing data for analysis
+Key tasks
+  1. Check the data for errors.
+  2. Choose your tools.
+  3. Transform the data so you can work with it effectively.
+  4. Document the cleaning process.
+Deliverable
+  1. Documentation of any cleaning or manipulation of data
+### 3.1 Data cleaning process
 ```SQL
   --- I've used below SQL statement to view all the rows wtih a null values ---
 SELECT * FROM biketrips
@@ -159,7 +167,8 @@ WHERE
 ### 3.5 Add new columns
 In order to enhance the precision of the datasets and augment the comprehensiveness of information for the purpose of facilitating data analytics comprehension, the incorporation of new columns has been deemed necessary.
 
-```SQL - Added new column (ride_length) and populate.
+```SQL - 
+  --- added new column (ride_length) and populate ---
   --- the new column is about the ride durations in each rows ---
   --- data extracted from subtracting started_at from ended_at columns ---
 ALTER TABLE biketrips ADD COLUMN ride_length INTERVAL;
@@ -185,7 +194,8 @@ delete from biketrips where ride_length < 0
 
 ```
 
-``` SQL (Added new column day_of_week)
+``` SQL 
+  --- added new column (day_of_week) ---
   --- the new column shows what day of the week the activity occurred ---
 ALTER TABLE biketrips ADD COLUMN day_of_week TEXT;
     UPDATE biketrips o1
@@ -194,7 +204,8 @@ ALTER TABLE biketrips ADD COLUMN day_of_week TEXT;
     WHERE o1.ride_id = o2.ride_id;
 ```
 
-``` SQL Added new column (month)
+``` SQL 
+  --- added new column (month) ---
   --- the new column shows which month the activity occurred ---
 ALTER TABLE biketrips ADD COLUMN month TEXT;
     UPDATE biketrips o1
@@ -203,7 +214,8 @@ ALTER TABLE biketrips ADD COLUMN month TEXT;
     WHERE o1.ride_id = o2.ride_id;
 ```
 
-``` SQL "Added new column (time_block)"
+``` SQL 
+  --- added new column (time_block) ---
   --- the new column shows what part of the day the activity occurred --- 
 ALTER TABLE biketrips
 ADD COLUMN time_block VARCHAR(20);
@@ -217,7 +229,7 @@ END;
 
 ```
 
-## 4. Exploratory Analysis
+## 4. Analyze
 
 Insert image/picture:
 
