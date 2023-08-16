@@ -99,7 +99,7 @@ combined_csv.to_csv( "2021combined_csv.csv", index=False, encoding='utf-8-sig')
 ### 3.3 View datasets
 Subsequent to the amalgamation of the 12 individual datasets, the aggregated dataset has been seamlessly imported into the PostgreSQL database infrastructure. This comprehensive dataset comprises a total of 5,595,063 distinct rows. For the purpose of reviewing the entire dataset, the ensuing SQL statement may be employed:
 
-```PostgreSQL
+```postgreSQL
   --- Below is table structure SQL statement that has been established, accompanied by the requisite rows, 
       in advance of the commencement of the data sets' importation process. ---
 
@@ -124,7 +124,7 @@ Select Count(*) from biketrips;
 ```
 
 ### 3.4 Data cleaning process
-```PostfreSQL
+```postfreSQL
   --- I've used below SQL statement to view all the rows wtih a null values ---
 
 SELECT *
@@ -142,7 +142,7 @@ ORDER BY started_at ASC
 
   --- A total of 1,006,761 rows found with null values --
 ```
-```PostgreSQL
+```postgreSQL
   --- Deleting all rows with null values ---
 
 DELETE FROM biketrips
