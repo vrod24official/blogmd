@@ -41,14 +41,30 @@ You will produce a report with the following deliverables:
 2. A description of all data sources used 
 3. Documentation of any cleaning or manipulation of data 4. A summary of your analysis 5. Supporting visualizations and key findings 6. Your top three recommendations based on your analysis 
 
-## 2 Prepare
+## 3 Prepare
 Utilizing Cyclistic's historical trip data, an in-depth analysis will be conducted to discern prevailing trends. The dataset encompassing the last twelve months of Cyclistic trip records can be accessed from the this link https://divvy-tripdata.s3.amazonaws.com/index.html. It is important to acknowledge that the datasets have been designated under an alternate nomenclature due to the fictitious nature of Cyclistic as a corporate entity. It is noteworthy, however, that these datasets remain suitable for the current case study, thus facilitating comprehensive responses to pertinent business inquiries. This dataset has been made available through the auspices of Motivate International Inc., and its use is authorized by the corresponding license agreement.
 
 It should be emphasized that the dataset is of a public nature, permitting the exploration of distinct usage patterns exhibited by various customer categories within the context of Cyclistic bicycles. However, it is crucial to recognize that data privacy considerations prohibit the utilization of personally identifiable information pertaining to riders. Consequently, any endeavors to correlate pass acquisitions with credit card details, with the intention of ascertaining the residence of casual riders within Cyclistic's service vicinity or their history of purchasing multiple individual passes, are precluded by these privacy constraints.
 
-## 3 Cleaning or manipulation of data
+### 3.1 Key task
+Acquisition and Organization of Data:
 
-### 3.1 Merge datasets
+The acquisition of the requisite data has been executed diligently, with copies securely preserved both on my local computer and within the confines of Kaggle's secure environment. This meticulous approach to data storage ensures compliance with best practices in data security and confidentiality.
+
+Data Structure and Organization:
+
+The acquired data is structured in the CSV (comma-separated values) format, facilitating ease of data manipulation and analysis. Within this dataset, a total of 13 distinct columns are present, each corresponding to specific attributes and variables relevant to the Cyclistic bike-sharing operations.
+
+Data Sorting and Filtering:
+
+In accordance with the analytical scope, the data encompassing the most recent 12-month interval, spanning from January 2021 to December 2021, has been identified as the focal period for analysis. This selection has been predicated on the imperative of utilizing the most contemporaneous dataset to underpin our insights and recommendations.
+
+Credibility Assessment:
+
+An inherent aspect of the data analysis process involves an assessment of data credibility. This entails an evaluation of data sources, collection methodologies, and inherent biases. It is imperative to ensure that the data originates from reliable sources and adheres to rigorous collection standards. In order to gauge the credibility of the provided data, a comprehensive review of its sourcing and methodology will be undertaken, with the intent of validating its suitability for generating accurate and actionable insights. This critical appraisal will be a cornerstone in ensuring the integrity of the ensuing analysis and strategic recommendations.
+
+### 3.2 Merging of Datasets
+Through the utilization of a straightforward Python script, the data pertaining to the 12 consecutive months has been successfully amalgamated into a singular, unified dataset.
 
 ```python
 import os
@@ -59,16 +75,29 @@ import pandas as pd
 #use glob pattern matching -> extension = 'csv'
 #save result in list -> all_filenames
 extension = 'csv'
-all_filenames = [i for i in glob.glob('*.{}'.format(extension))]
-#print(all_filenames)
+glob.glob('*-divvy-tripdata.csv')
+
+['202101-divvy-tripdata.csv',
+ '202102-divvy-tripdata.csv',
+ '202103-divvy-tripdata.csv',
+ '202104-divvy-tripdata.csv',
+ '202105-divvy-tripdata.csv',
+ '202106-divvy-tripdata.csv',
+ '202107-divvy-tripdata.csv',
+ '202108-divvy-tripdata.csv',
+ '202109-divvy-tripdata.csv',
+ '202110-divvy-tripdata.csv',
+ '202111-divvy-tripdata.csv',
+ '202112-divvy-tripdata.csv',]
 
 #combine all files in the list
 combined_csv = pd.concat([pd.read_csv(f) for f in all_filenames ])
 #export to csv
-combined_csv.to_csv( "combined_csv.csv", index=False, encoding='utf-8-sig')
+combined_csv.to_csv( "2021combined_csv.csv", index=False, encoding='utf-8-sig')
 
 ```        
 ### 3.2 View datasets
+Subsequent to the amalgamation of the 12 individual datasets, the aggregated dataset has been seamlessly imported into the PostgreSQL database infrastructure. This comprehensive dataset comprises a total of 5,595,063 distinct rows. For the purpose of reviewing the entire dataset, the ensuing SQL statement may be employed:
 
 ### 3.3 Delete NULL
 
