@@ -17,25 +17,34 @@ toc:
 <!--more-->
 
 ## 1 Scenario
-You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations. 
+As a junior data analyst within Cyclistic's esteemed Marketing Analysis team, I am entrusted with a pivotal role in contributing to the organization's strategic vision. Cyclistic, a prominent bike-share enterprise located in Chicago, is poised to chart its course toward an even more prosperous future, and this trajectory hinges upon the optimization of its annual membership base. Given the significance of this endeavor, our team's foremost objective is to attain a nuanced comprehension of the divergent usage patterns exhibited by casual riders and annual members of Cyclistic's bike-sharing services.
+
+By delving into these discernible usage discrepancies, our team endeavors to forge a fresh and efficacious marketing strategy, aimed at the conversion of transient casual riders into dedicated annual members. The blueprint for this strategy is contingent upon securing the endorsement of Cyclistic's executive leadership. Consequently, the recommendations that will be presented must be underpinned by both compelling data insights and an array of sophisticated data visualizations.
+
+In essence, the crux of our initiative lies in identifying the intrinsic distinctions that demarcate the engagement behaviors of casual riders from those of steadfast annual members. Armed with these granular insights, we are poised to shape a strategic narrative that resonates effectively with each category of riders, thereby fostering a paradigm shift in their consumption habits. The forthcoming data-driven revelations and visualizations will serve as the bedrock upon which our transformative marketing strategy will be constructed, enabling us to take bold steps toward converting casual riders into loyal annual members.
 
 Characters and teams
 Cyclistic: A bike-share program that features more than 5,800 bicycles and 600 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30% use them to commute to work each day.
 Lily Moreno: The director of marketing and your manager. Moreno is responsible for the development of campaigns and initiatives to promote the bike-share program. These may include email, social media, and other channels.
 Cyclistic marketing analytics team: A team of data analysts who are responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy. You joined this team six months ago and have been busy learning about Cyclistic’s mission and business goals — as well as how you, as a junior data analyst, can help Cyclistic achieve them.
 Cyclistic executive team: The notoriously detail-oriented executive team will decide whether to approve the recommended marketing program.  
-##  Ask
+
+## 2 Ask
 Three questions will guide the future marketing program: 
 1. How do annual members and casual riders use Cyclistic bikes differently? 
 2. Why would casual riders buy Cyclistic annual memberships? 
 3. How can Cyclistic use digital media to influence casual riders to become members? 
-   
+
 Moreno has assigned you the first question to answer: How do annual members and casual riders use Cyclistic bikes differently? 
 You will produce a report with the following deliverables: 
 1. A clear statement of the business task 
 2. A description of all data sources used 
 3. Documentation of any cleaning or manipulation of data 4. A summary of your analysis 5. Supporting visualizations and key findings 6. Your top three recommendations based on your analysis 
-## 2 Data sources
+
+## 2 Prepare
+Utilizing Cyclistic's historical trip data, an in-depth analysis will be conducted to discern prevailing trends. The dataset encompassing the last twelve months of Cyclistic trip records can be accessed from the this link https://divvy-tripdata.s3.amazonaws.com/index.html. It is important to acknowledge that the datasets have been designated under an alternate nomenclature due to the fictitious nature of Cyclistic as a corporate entity. It is noteworthy, however, that these datasets remain suitable for the current case study, thus facilitating comprehensive responses to pertinent business inquiries. This dataset has been made available through the auspices of Motivate International Inc., and its use is authorized by the corresponding license agreement.
+
+It should be emphasized that the dataset is of a public nature, permitting the exploration of distinct usage patterns exhibited by various customer categories within the context of Cyclistic bicycles. However, it is crucial to recognize that data privacy considerations prohibit the utilization of personally identifiable information pertaining to riders. Consequently, any endeavors to correlate pass acquisitions with credit card details, with the intention of ascertaining the residence of casual riders within Cyclistic's service vicinity or their history of purchasing multiple individual passes, are precluded by these privacy constraints.
 
 ## 3 Cleaning or manipulation of data
 
