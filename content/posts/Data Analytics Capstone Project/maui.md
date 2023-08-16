@@ -99,7 +99,31 @@ combined_csv.to_csv( "2021combined_csv.csv", index=False, encoding='utf-8-sig')
 ### 3.2 View datasets
 Subsequent to the amalgamation of the 12 individual datasets, the aggregated dataset has been seamlessly imported into the PostgreSQL database infrastructure. This comprehensive dataset comprises a total of 5,595,063 distinct rows. For the purpose of reviewing the entire dataset, the ensuing SQL statement may be employed:
 
+```PostgreSQL
+  --- Below is table structure SQL statement that has been established, accompanied by the requisite rows, in advance of the commencement of the data sets' importation process. ---
+
+CREATE TABLE biketrips (
+	ride_id varchar,
+	rideable_type varchar, 
+	started_at timestamp, 
+	ended_at timestamp, 
+	start_station_name varchar, 
+	start_station_id varchar, 
+	end_station_name varchar, 
+	end_station_id varchar, 
+	start_lat varchar, 
+	start_lng varchar, 
+	end_lat varchar, 
+	end_lng varchar, 
+	bike_user varchar
+)
+
+  --- Below is the SQL statement to view the total number of rows ---
+Select Count(*) from biketrips;
+```
+
 ### 3.3 Delete NULL
+
 
 ### 3.4 Add new columns
 
