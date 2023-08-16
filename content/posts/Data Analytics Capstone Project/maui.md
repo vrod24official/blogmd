@@ -46,7 +46,7 @@ Utilizing Cyclistic's historical trip data, an in-depth analysis will be conduct
 
 It should be emphasized that the dataset is of a public nature, permitting the exploration of distinct usage patterns exhibited by various customer categories within the context of Cyclistic bicycles. However, it is crucial to recognize that data privacy considerations prohibit the utilization of personally identifiable information pertaining to riders. Consequently, any endeavors to correlate pass acquisitions with credit card details, with the intention of ascertaining the residence of casual riders within Cyclistic's service vicinity or their history of purchasing multiple individual passes, are precluded by these privacy constraints.
 
-### 3.1 Key task
+### 3.1 Key tasks
 Acquisition and Organization of Data:
 
 The acquisition of the requisite data has been executed diligently, with copies securely preserved both on my local computer and within the confines of Kaggle's secure environment. This meticulous approach to data storage ensures compliance with best practices in data security and confidentiality.
@@ -96,11 +96,12 @@ combined_csv = pd.concat([pd.read_csv(f) for f in all_filenames ])
 combined_csv.to_csv( "2021combined_csv.csv", index=False, encoding='utf-8-sig')
 
 ```        
-### 3.2 View datasets
+### 3.3 View datasets
 Subsequent to the amalgamation of the 12 individual datasets, the aggregated dataset has been seamlessly imported into the PostgreSQL database infrastructure. This comprehensive dataset comprises a total of 5,595,063 distinct rows. For the purpose of reviewing the entire dataset, the ensuing SQL statement may be employed:
 
 ```PostgreSQL
-  --- Below is table structure SQL statement that has been established, accompanied by the requisite rows, in advance of the commencement of the data sets' importation process. ---
+  --- Below is table structure SQL statement that has been established, accompanied by the requisite rows, 
+      in advance of the commencement of the data sets' importation process. ---
 
 CREATE TABLE biketrips (
 	ride_id varchar,
@@ -122,10 +123,45 @@ CREATE TABLE biketrips (
 Select Count(*) from biketrips;
 ```
 
-### 3.3 Delete NULL
+### 3.4 Data cleaning process
+```PostfreSQL
+  --- I've used below SQL statement to view all the rows wtih a null values ---
 
+SELECT *
+	FROM biketrips
+WHERE start_station_name IS  NULL OR
+	    start_station_id IS  NULL OR
+	    end_station_name IS  NULL OR 
+	    end_station_id IS  NULL OR
+	    start_lat  IS  NULL OR
+		  start_lng IS  NULL OR
+		  end_lat  IS  NULL OR
+		  end_lng  IS  NULL OR
+		  bike_user IS  NULL 
+ORDER BY started_at ASC
 
-### 3.4 Add new columns
+  --- A total of 1,006,761 rows found with null values --
+```
+```PostgreSQL
+  --- Deleting all rows with null values ---
+
+DELETE FROM biketrips
+WHERE 
+    started_at IS  NULL OR
+    ended_at IS NULL OR
+    start_station_name IS  NULL OR
+    start_station_id IS  NULL OR
+    end_station_name IS  NULL OR 
+    end_station_id IS  NULL OR
+    start_lat  IS  NULL OR
+    start_lng IS  NULL OR
+    end_lat  IS  NULL OR
+    end_lng  IS  NULL OR
+    bike_user IS  NULL ;
+
+```
+
+### 3.5 Add new columns
 
 ## 4. Exploratory Analysis
 
