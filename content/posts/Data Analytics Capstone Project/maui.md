@@ -277,7 +277,7 @@ group by bike_user
 ![](/images/image3.png)
 
 
-### Monthly Metrics
+### 4.4 Monthly Metrics
 
 ```SQL
 select 
@@ -292,20 +292,48 @@ min(ride_length) as min_ride_user_sec
 from biketrips
 
 group by Month,bike_user
-order by total_rides
+order by total_rides desc
 ```
 ![](/images/image4.png)
 
-### 4.5 Weekly Metrics
-
-
-
-### Monthly Metrics 
+### 4.5 Day of week Metrics
 
 ```SQL
+select 
+day_of_week
+bike_user,
+count(ride_id) AS total_rides,
+round(sum(ride_length/3600),2) as total_ride_hours,
+round(avg(ride_length/60),2) as avg_ride_mins,
+round(max(ride_length/3600),2) as max_ride_hours,
+min(ride_length) as min_ride_user_sec
 
+from biketrips
+
+group by day_of_week,bike_user
+order by total_rides desc
 ```
+![](/images/image5.png)
 
+
+### 4.6 Top Stations
+
+```SQL
+select 
+start_station_name
+bike_user,
+count(ride_id) AS total_rides,
+round(sum(ride_length/3600),2) as total_ride_hours,
+round(avg(ride_length/60),2) as avg_ride_mins,
+round(max(ride_length/3600),2) as max_ride_hours,
+min(ride_length) as min_ride_user_sec
+
+from biketrips
+
+group by start_station_name,bike_user
+order by total_rides desc LIMIT 15
+```
+![](/images/image6.png)
 
 **Busiest day for rides**
 
