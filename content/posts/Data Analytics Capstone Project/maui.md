@@ -159,8 +159,8 @@ WHERE
 ### 3.5 Add new columns
 In order to enhance the precision of the datasets and augment the comprehensiveness of information for the purpose of facilitating data analytics comprehension, the incorporation of new columns has been deemed necessary.
 
-```SQL
-  --- add new column (ride_length) and populate ---
+```SQL - Added new column (ride_length) and populate.
+  --- the new column is about the ride durations in each rows ---
   --- data extracted from subtracting started_at from ended_at columns ---
 ALTER TABLE biketrips ADD COLUMN ride_length INTERVAL;
 UPDATE biketrips o1
@@ -175,16 +175,45 @@ UPDATE biketrips o1
 FROM biketrips o2
 WHERE o1.ride_id = o2.ride_id
 
-```
-Columns with negative and zero values was deleted for more cleaning process.
-
-```SQL
+  ---columns with negative and zero values was deleted for more cleaning process--
   --- below is SQL statement to view zero and less than zero values ---
 select * from biketrips where ride_length = 0
 select * from biketrips where ride_length < 0
   --- SQL statement for deleting zero and less than zer values ---
 delete from biketrips where ride_length = 0
 delete from biketrips where ride_length < 0
+
+```
+
+``` SQL - Added new column (day_of_week)
+  --- the new column shows what day of the week the activity occurred ---
+ALTER TABLE biketrips ADD COLUMN day_of_week TEXT;
+    UPDATE biketrips o1
+        SET day_of_week = TO_CHAR(o1.started_at, 'Day')
+    FROM biketrips o2
+    WHERE o1.ride_id = o2.ride_id;
+```
+
+``` SQL - Added new column (month)
+  --- the new column shows which month the activity occurred ---
+ALTER TABLE biketrips ADD COLUMN month TEXT;
+    UPDATE biketrips o1
+        SET month = TO_CHAR(o1.started_at, 'Month')
+    FROM biketrips o2
+    WHERE o1.ride_id = o2.ride_id;
+```
+
+``` SQL - Added new column (time_block)
+  --- the new column shows what part of the day the activity occurred ---
+ALTER TABLE biketrips
+ADD COLUMN time_block VARCHAR(20);
+UPDATE events
+SET time_block = CASE
+  WHEN EXTRACT(HOUR FROM event_time) >= 6 AND EXTRACT(HOUR FROM event_time) < 12 THEN 'Morning'
+  WHEN EXTRACT(HOUR FROM event_time) >= 12 AND EXTRACT(HOUR FROM event_time) < 18 THEN 'Afternoon'
+  WHEN EXTRACT(HOUR FROM event_time) >= 18 AND EXTRACT(HOUR FROM event_time) <= 23 THEN 'Evening'
+  ELSE 'Night'
+END;
 
 ```
 
