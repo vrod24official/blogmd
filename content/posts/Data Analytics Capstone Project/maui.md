@@ -316,7 +316,7 @@ order by total_rides desc
 ![](/images/image5.png)
 
 
-### 4.6 Top Stations
+### 4.6 Top 15 Stations
 
 ```SQL
 select 
@@ -335,11 +335,28 @@ order by total_rides desc LIMIT 15
 ```
 ![](/images/image6.png)
 
-**Busiest day for rides**
+### 4.7 Rideable type Metrics
 
-**Median ride length per day**
+```SQL
+elect 
+rideable_type,
+bike_user,
+count(ride_id) AS total_rides,
+round(sum(ride_length/3600),2) as total_ride_hours,
+round(avg(ride_length/60),2) as avg_ride_mins,
+round(max(ride_length/3600),2) as max_ride_hours,
+min(ride_length) as min_ride_user_sec
 
-**Total rides per day**
+from biketrips
+
+group by rideable_type, bike_user
+order by total_rides desc
+```
+![](/images/image7.png)
+
+
+## Share
+
 
 ![Total rides per day](/images/total_rides_day.png "Total rides per day")
 
