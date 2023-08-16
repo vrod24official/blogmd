@@ -246,10 +246,9 @@ GROUP BY bike_user;
 ```
 ![](/images/image1.png)
 
-
+### 4.2 Percentag of rides by Bike Type
 
 ```SQL
-
 select
 rideable_type AS bike_type,
 bike_user AS membership_type,  
@@ -260,8 +259,8 @@ FROM biketrips
 WHERE bike_user IS NOT NULL
 GROUP BY rideable_type, bike_user
 ORDER BY rideable_type;
-
 ```
+![](/images/image2.png)
 
 ![Percentage](/images/total_percent.png "Percentage")
 
