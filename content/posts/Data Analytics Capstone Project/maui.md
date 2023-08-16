@@ -185,7 +185,7 @@ delete from biketrips where ride_length < 0
 
 ```
 
-``` SQL - Added new column (day_of_week)
+``` SQL (Added new column day_of_week)
   --- the new column shows what day of the week the activity occurred ---
 ALTER TABLE biketrips ADD COLUMN day_of_week TEXT;
     UPDATE biketrips o1
@@ -194,7 +194,7 @@ ALTER TABLE biketrips ADD COLUMN day_of_week TEXT;
     WHERE o1.ride_id = o2.ride_id;
 ```
 
-``` SQL - Added new column (month)
+``` SQL Added new column (month)
   --- the new column shows which month the activity occurred ---
 ALTER TABLE biketrips ADD COLUMN month TEXT;
     UPDATE biketrips o1
@@ -203,8 +203,8 @@ ALTER TABLE biketrips ADD COLUMN month TEXT;
     WHERE o1.ride_id = o2.ride_id;
 ```
 
-``` SQL - Added new column (time_block)
-  --- the new column shows what part of the day the activity occurred ---
+``` SQL "Added new column (time_block)"
+  --- the new column shows what part of the day the activity occurred --- 
 ALTER TABLE biketrips
 ADD COLUMN time_block VARCHAR(20);
 UPDATE events
