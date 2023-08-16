@@ -262,11 +262,55 @@ ORDER BY rideable_type;
 ```
 ![](/images/image2.png)
 
-![Percentage](/images/total_percent.png "Percentage")
+### 4.3 Total number of rides by Day
 
-**Median ride length  or trip duration**
+```SQL
+SELECT bike_user AS membership_type, day_of_week,
+COUNT (day_of_week) AS rides_per_day
+FROM biketrips
+WHERE bike_user is not null 
+GROUP BY bike_user, day_of_week
+ORDER BY 
+CASE day_of_week
+     WHEN 'Sunday' THEN 1 
+	 WHEN 'Monday' THEN 2
+	 WHEN 'Tuesday' THEN 3 
+	 WHEN 'Wednesday' THEN 4
+	 WHEN 'Thursday' THEN 5
+	 WHEN 'Friday' THEN 6
+	 WHEN 'Saturday' THEN 7 
+END, bike_user;
+```
+![](/images/image3.png)
 
-![Median ride length or trip duration](/images/median.png "Median Ride Length")
+### 4.4 Average ride duration by Day (seconds)
+
+```SQL
+SELECT bike_user AS membership_type, 
+day_of_week, 
+AVG (ride_length) as ride_duration
+FROM biketrips
+WHERE bike_user IS NOT NULL
+GROUP BY bike_user, day_of_week
+ORDER BY 
+CASE day_of_week
+     WHEN 'Sunday' THEN 1 
+	 WHEN 'Monday' THEN 2
+	 WHEN 'Tuesday' THEN 3 
+	 WHEN 'Wednesday' THEN 4
+	 WHEN 'Thursday' THEN 5
+	 WHEN 'Friday' THEN 6
+	 WHEN 'Saturday' THEN 7 
+END, bike_user;
+```
+![](/images/image4.png)
+
+### Percentage of rides per Season
+
+```SQL
+
+```
+
 
 
 **Busiest day for rides**
