@@ -130,10 +130,10 @@ WHERE start_station_name IS  NULL OR
 	    end_station_name IS  NULL OR 
 	    end_station_id IS  NULL OR
 	    start_lat  IS  NULL OR
-		  start_lng IS  NULL OR
-		  end_lat  IS  NULL OR
-		  end_lng  IS  NULL OR
-		  bike_user IS  NULL 
+		start_lng IS  NULL OR
+		end_lat  IS  NULL OR
+		end_lng  IS  NULL OR
+		bike_user IS  NULL 
 ORDER BY started_at ASC
 
   --- A total of 1,006,761 rows found with null values ---
@@ -157,6 +157,36 @@ WHERE
 ```
 
 ### 3.5 Add new columns
+In order to enhance the precision of the datasets and augment the comprehensiveness of information for the purpose of facilitating data analytics comprehension, the incorporation of new columns has been deemed necessary.
+
+```SQL
+  --- add new column (ride_length) and populate ---
+  --- data extracted from subtracting started_at from ended_at columns ---
+ALTER TABLE biketrips ADD COLUMN ride_length INTERVAL;
+UPDATE biketrips o1
+	SET ride_length = o2.ended_at - o1.started_at
+FROM biketrips o2
+WHERE o1.ride_id = o2.ride_id;
+
+  --- since the output is in timeformat, data was changed to seconds (number format) ---
+ALTER TABLE biketrips ADD COLUMN ride_length NUMERIC;
+UPDATE biketrips o1
+	SET ride_length = EXTRACT(EPOCH FROM (o2.ended_at - o1.started_at)) 
+FROM biketrips o2
+WHERE o1.ride_id = o2.ride_id
+
+```
+Columns with negative and zero values was deleted for more cleaning process.
+
+```SQL
+  --- below is SQL statement to view zero and less than zero values ---
+select * from biketrips where ride_length = 0
+select * from biketrips where ride_length < 0
+  --- SQL statement for deleting zero and less than zer values ---
+delete from biketrips where ride_length = 0
+delete from biketrips where ride_length < 0
+
+```
 
 ## 4. Exploratory Analysis
 
