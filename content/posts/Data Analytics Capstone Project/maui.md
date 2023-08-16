@@ -64,7 +64,7 @@ Credibility Assessment:
 An inherent aspect of the data analysis process involves an assessment of data credibility. This entails an evaluation of data sources, collection methodologies, and inherent biases. It is imperative to ensure that the data originates from reliable sources and adheres to rigorous collection standards. In order to gauge the credibility of the provided data, a comprehensive review of its sourcing and methodology will be undertaken, with the intent of validating its suitability for generating accurate and actionable insights. This critical appraisal will be a cornerstone in ensuring the integrity of the ensuing analysis and strategic recommendations.
 
 ### 2.2 Merging of Datasets
-Through the utilization of a straightforward Python script, the data pertaining to the 12 consecutive months has been successfully amalgamated into a singular, unified dataset.
+For data transformation, data processing was performed Python Script and SQL Server. The data from each month, spanning from January to December 2021, was imported and merged into a single table called “2021combined_csv.csv”.The steps involved in this process are as follows:
 
 ```python
 import os
@@ -121,7 +121,8 @@ Select Count(*) from biketrips;
 
 ```
 ## 3 Process
-Cleaning and preparing data for analysis
+Cleaning or manipulation of data
+Our task requires three libraries — Pandas, Glob, and the OS module and PostgreSQL as our  database.
 Key tasks
   1. Check the data for errors.
   2. Choose your tools.
@@ -230,12 +231,35 @@ END;
 ```
 
 ## 4. Analyze
+In the Analyze phase, we delve into the data to uncover insights and address the key findings related to how annual members and casual riders use Cyclistic bikes differently. The focus is on understanding their behavior, preferences, and patterns to inform marketing strategies aimed at converting casual riders into annual members. To address the key findings, the following analyses were performed in postgreSQL server.
 
-Insert image/picture:
+```SQL
+  --- casual riders vs annual members (percentage)
+SELECT bike_user AS membership_type, 
+COUNT (bike_user) AS total_ride, 
+SUM (COUNT (bike_user)) OVER () AS total_membership,
+CONCAT (CAST (COUNT (bike_user) * 100.0/ SUM (COUNT (bike_user)) OVER () AS DECIMAL (10,2)), '%') membership_percentage
+FROM biketrips
+WHERE bike_user IS NOT NULL
+GROUP BY bike_user;
+(/iamges/iamge2.png)
+```
 
-![Average ride length or trip duration](/images/avg_ride_length.png "AVG Ride Length")
 
-**Total trips**
+```SQL
+
+select
+rideable_type AS bike_type,
+bike_user AS membership_type,  
+COUNT (rideable_type) AS individual_membership_count, 
+SUM (COUNT (rideable_type)) OVER (Partition by rideable_type) AS total_membership,
+CONCAT (CAST (COUNT (rideable_type) * 100.0/ SUM (COUNT (rideable_type)) OVER (Partition by rideable_type) AS Decimal (10,2)), '%') AS membership_percentage
+FROM biketrips
+WHERE bike_user IS NOT NULL
+GROUP BY rideable_type, bike_user
+ORDER BY rideable_type;
+
+```
 
 ![Percentage](/images/total_percent.png "Percentage")
 
