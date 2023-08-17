@@ -358,9 +358,8 @@ order by total_rides desc
 ## 5 Share
 
 Overview
-```Tableau
-```
-![](/images/image8.png)
+```Tableau```
+![Bike User](/images/image8.png "Bike User")
 Bike User
 ![](/images/image9.png)
 
