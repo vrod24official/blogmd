@@ -355,8 +355,9 @@ order by total_rides desc
 ![](/images/image7.png)
 
 
-## Share
-
+## 5 Share
+![](/images/image8.png)
+![](/images/image9.png)
 
 ![Total rides per day](/images/total_rides_day.png "Total rides per day")
 
