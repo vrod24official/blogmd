@@ -356,16 +356,19 @@ order by total_rides desc
 
 
 ## 5 Share
+
+```Overview
+```
 ![](/images/image8.png)
+```Bike User
+```
 ![](/images/image9.png)
 
-![Total rides per day](/images/total_rides_day.png "Total rides per day")
+## 6 Act
+After the data has been processed, analyzed and insights have been shared, the final phase is to recommend a plan of action for the bikeshare company in line with their business task and objectives. My recommendations are:
 
+1. Cyclistic already has single ride and full day passes, but it could be worth it to introduce a new monthly/seasonal plan for riders. The data shows that the number of rides casual riders go on is greatly affected by the season or the weather. Many rides in the summer from June to September and very few rides in the winter from November to February. Cyclistic can offer free membership for a full month to any casual riders that are interested in the service. It would be best to do this in the winter months where riders don't use the service as much. If they enjoy the perks of a full membership in these months or seasons, it could convince them to subscribe for more months and ultimately purchase a full annual membership.
+2. Another way to convert casual riders into full time members could be targeted physical ads and campaigns. The data extracted from the past 12 months gives us insight into the most frequently used start and end stations used by casual riders as well as the routes they use on their rides. Billboards and posters are a lot more useful if the company already knows exactly where the target audience will be.
+3. Cylistic can provide financial incentives for member riders and start a campaign that shows how subscribing for a full year is cheaper in the long run than subscribing only for the days in the summer months like casual riders usually do. They could also provide coupons or bonuses that encourage even more frequent rides. An example of one such incentive could be a weekly scoreboard showing the number of rides and ride length for each casual rider that chooses to participate with the winner at the end of the month getting a seasonal pass or annual membership as a reward. If casual riders can be convinced to take the bike out more frequently every week, they will ultimately see the benefit in simply subscribing to a full plan that allows them use it whenever they like.
 
-## Summary of analysis
-
-## Visualizations and key findings
-
-
-## Three recommendations based on analysis
 
