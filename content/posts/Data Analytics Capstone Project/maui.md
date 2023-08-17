@@ -338,7 +338,7 @@ order by total_rides desc LIMIT 15
 ### 4.7 Rideable type Metrics
 
 ```SQL
-elect 
+Select 
 rideable_type,
 bike_user,
 count(ride_id) AS total_rides,
@@ -358,6 +358,8 @@ order by total_rides desc
 ## 5 Share
 
 Overview
+```Tableau
+```
 ![](/images/image8.png)
 Bike User
 ![](/images/image9.png)
